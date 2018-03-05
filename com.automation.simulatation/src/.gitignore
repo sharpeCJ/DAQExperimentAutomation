@@ -1,0 +1,17 @@
+### Temporary files ###
+*.bak
+*.swp
+*.tmp
+*.*~
+
+### Java ###
+*.class
+hs_err_pid*
+
+### Build output ###
+/bin/
+/classes/
+
+### JUnit testing ###
+
+### Various OS, etc. files ###
