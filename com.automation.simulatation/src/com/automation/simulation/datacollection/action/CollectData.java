@@ -5,9 +5,13 @@ import com.automation.simulation.action.SimulationAction;
 import com.automation.simulation.exceptions.ActionExecutionException;
 import com.automation.simulation.externalresources.SampleInformation.SampleInformationElement;
 import com.automation.simulation.externalresources.SampleState.SampleShotState;
+import com.automation.simulation.samplehandling.action.LoadSampleFromLocalStorageToSampleStage;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CollectData extends SimulationAction implements DependentAction{
-	
+	private static final Logger logger = LoggerFactory.getLogger(CollectData.class);
 	public static final String COLLECT_DATE_ID = CollectData.class.getName();
 
 	
@@ -24,7 +28,7 @@ public class CollectData extends SimulationAction implements DependentAction{
 	@Override
 	public void doAction() throws ActionExecutionException {
 		
-		System.out.println("Collect Data Action");
+		logger.info("Collect Data Action");
 		
 		
 		executeAction();

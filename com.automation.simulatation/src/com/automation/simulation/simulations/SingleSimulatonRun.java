@@ -47,7 +47,7 @@ public static void main(String args[]) {
 	
 	//boolean hasSensed = cs.doSense();
 	
-	//System.out.println(hasSensed);//+ " " + ((List)(sensed.get(DataMapping.LOCAL_STORAGE_SAMPLES))).size());
+	//logger.info(hasSensed);//+ " " + ((List)(sensed.get(DataMapping.LOCAL_STORAGE_SAMPLES))).size());
 	sample_handling_agent.setConveyance(cs);
 	sample_handling_agent.setInformationSource(sisSamplehandling);
 	sample_handling_agent.setLoadNextQueue(lns);

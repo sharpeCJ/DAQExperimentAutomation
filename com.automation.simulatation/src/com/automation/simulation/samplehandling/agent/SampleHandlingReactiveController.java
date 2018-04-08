@@ -1,7 +1,12 @@
 package com.automation.simulation.samplehandling.agent;
 
 import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.automation.simulation.action.Action;
+import com.automation.simulation.datacollection.action.CollectData;
 import com.automation.simulation.externalresources.DummyLoadNextService;
 import com.automation.simulation.externalresources.DummySampleInformationService;
 import com.automation.simulation.externalresources.LoadNextQueue;
@@ -20,7 +25,7 @@ import com.automation.simulation.subsumption.architecture.ActionStates;
 import com.automation.simulation.subsumption.architecture.Controller;
 
 public final class SampleHandlingReactiveController implements Controller{
-	
+	private static final Logger logger = LoggerFactory.getLogger(SampleHandlingReactiveController.class);
 	private boolean startProcess = true; 
 	private int dutyCycleDefault = 1000;
 	private ConveyanceSense conveyanceSensor = null; 
@@ -37,12 +42,12 @@ public final class SampleHandlingReactiveController implements Controller{
 		
 		while(startProcess) {
 			
-			System.out.println("Start");
-			System.out.println("Pre");
+			logger.info("Start");
+			logger.info("Pre");
 			((DummySampleInformationService)sampleinfoService).showAllSampleInformation();
 			((DummyLoadNextService)loadNextService).showQueueInformation();
 			senseAct();
-			System.out.println("Post");
+			logger.info("Post");
 			((DummySampleInformationService)sampleinfoService).showAllSampleInformation();
 			((DummyLoadNextService)loadNextService).showQueueInformation();
 			dutyCycle();
@@ -52,7 +57,7 @@ public final class SampleHandlingReactiveController implements Controller{
 	
 	private void dutyCycle() {
 		
-		System.out.println("Duty Cycle");
+		logger.info("Duty Cycle");
 
 		try {
 			Thread.sleep(dutyCycleDefault);
@@ -63,7 +68,7 @@ public final class SampleHandlingReactiveController implements Controller{
 	public void senseAct() 
 	{
 		
-		System.out.println("SenseAct");
+		logger.info("SenseAct");
 		
 		
 		Action action = null;
@@ -89,7 +94,7 @@ public final class SampleHandlingReactiveController implements Controller{
 			
 			conveyanceBehaviour.inhibit();
 			actionExe.executeAction(action);
-			System.out.println("Exxture");
+			logger.info("Exxture");
 		}
 		
 		if(actionExe.getPerformingActionState())

@@ -98,7 +98,7 @@ public void printSampleInformation()
 				" location " +entry.getValue().location.name()+ " container" +entry.getValue().localStorageSlot+
 				" shot_state " +entry.getValue().shot.name());
 		
-		System.out.println(outputQueueString);
+		logger.info(outputQueueString);
 	}
 }
 

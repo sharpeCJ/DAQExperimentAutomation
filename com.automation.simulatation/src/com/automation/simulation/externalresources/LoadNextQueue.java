@@ -84,7 +84,7 @@ public void printLoadQueue()
 	{
 		SampleLoadQueueElement element = it.next();
 		
-		System.out.println("\tSample: ID " +element.sqe.id+ " priority " +element.priorty);
+		logger.info("\tSample: ID " +element.sqe.id+ " priority " +element.priorty);
 	}
 		
 }

@@ -3,6 +3,9 @@ package com.automation.simulation.datacollection.agent;
 import java.util.HashMap;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.automation.simulation.datacollection.action.CollectData;
 import com.automation.simulation.exceptions.ActionExecutionException;
 import com.automation.simulation.externalresources.DataMapping;
@@ -14,7 +17,7 @@ import com.automation.simulation.samplehandling.conveyance.SenseSampleMounted;
 import com.automation.simulation.subsumption.architecture.Controller;
 
 public final class DataCollectionReactiveController implements Controller{
-	
+	private static final Logger logger = LoggerFactory.getLogger(DataCollectionReactiveController.class);
 	private boolean startProcess = true; 
 	private int dutyCycleDefault = 1000;
 	private SampleInformationService sampleinfoService = null; 
@@ -29,7 +32,7 @@ public final class DataCollectionReactiveController implements Controller{
 	public void start() {
 		
 		while(startProcess) {
-			System.out.println("Data Colection");
+			logger.info("Data Colection");
 
 			if(!inhibit) 
 			{
@@ -49,7 +52,7 @@ public final class DataCollectionReactiveController implements Controller{
 	
 	private void dutyCycle() {
 		
-		System.out.println("Data Colection");
+		logger.info("Data Colection");
 		try {
 			Thread.sleep(dutyCycleDefault);
 		} catch (InterruptedException e) {
@@ -59,7 +62,7 @@ public final class DataCollectionReactiveController implements Controller{
 	public void senseAct() 
 	{
 		
-		System.out.println("SenseAct");
+		logger.info("SenseAct");
 		
 		boolean sensed = senseSampleMounted.doSense();
 		
@@ -83,7 +86,7 @@ public final class DataCollectionReactiveController implements Controller{
 				 
 				 try {
 					collectDataAlgorithm.doAction();
-					System.out.println("Collect Data");
+					logger.info("Collect Data");
 					
 					if(collectDataAlgorithm.getDoneAction())
 					{
@@ -94,7 +97,7 @@ public final class DataCollectionReactiveController implements Controller{
 				 } catch (ActionExecutionException e) {
 					inbibitAllLayers();
 					startProcess = false;
-					System.out.println("An error occured");
+					logger.info("An error occured");
 				}
 				 
 				 
